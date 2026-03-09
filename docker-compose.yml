@@ -1,0 +1,27 @@
+services:
+  nestapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+    volumes:
+      - ./src:/usr/src/app/src
+  
+  nestapi_mysql:
+    image: mysql:8.4.8
+    ports:
+      - '3307:3307'
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootroot123
+      - MYSQL_DATABASE=db_main
+      - MYSQL_USER=nestapiuser
+      - MYSQL_PASSWORD=nestapiuser123
+      - MYSQL_TCP_PORT=3307
+    volumes:
+      - nestapi_mysql_data:/var/lib/mysql
+volumes:
+  nestapi_mysql_data:
