@@ -29,4 +29,4 @@ const models = modelFiles
 // Write combined schema
 fs.writeFileSync(outputFile, header + "\n" + models);
 
-console.log("✅ schema.prisma generated successfully!");
+console.log("[schema-builder]: schema.prisma generated successfully!");

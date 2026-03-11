@@ -6,6 +6,8 @@ COPY . .
 
 RUN npm install
 
+RUN node src/core/prisma/schema-builder.js
+
 RUN npx prisma generate --schema=src/core/prisma/schema.prisma
 
 EXPOSE 3000
