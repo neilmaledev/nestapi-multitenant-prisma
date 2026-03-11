@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Body } from "@nestjs/common";
-import { PrismaService } from "src/core/prisma/prisma.service";
+import { PrismaService } from "src/prisma/prisma.service";
 import argon2 from "argon2";
 import { AuthDto } from "./dto";
 
@@ -18,7 +18,6 @@ export class AuthController {
             msg: 'get user',
             // user: user,
             dto: dto
-
         }
     }
 

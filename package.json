@@ -19,8 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "postinstall": "npm run prisma:generate",
-    "prisma:generate": "npm run prisma:build && prisma generate --schema=src/core/prisma/schema.prisma",
-    "prisma:build": "node src/core/prisma/schema-builder.js"
+    "prisma:generate": "npm run prisma:build && prisma generate --schema=src/prisma/schema.prisma",
+    "prisma:build": "node src/prisma/schema-builder.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
