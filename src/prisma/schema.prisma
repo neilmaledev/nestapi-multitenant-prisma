@@ -8,13 +8,16 @@ generator client {
 
 model Tenant {
   id String @id @default(uuid()) @db.Char(36)
+  tenantUid String @map("tenant_uid")
   tenantName String @map("tenant_name")
+  dbUsername String @map("db_username")
+  dbPassword String @map("db_password")
   createdAt DateTime @default(now()) @map("created_at") @db.DateTime(3)
   createdBy String @map("created_by")
   updatedAt DateTime @default(now()) @map("updated_at") @db.DateTime(3)
   updatedBy String @map("updated_by")
-  deletedAt DateTime @map("deleted_at") @db.DateTime(3)
-  deletedBy String @map("deleted_by")
+  deletedAt DateTime? @map("deleted_at") @db.DateTime(3)
+  deletedBy String? @map("deleted_by")
 
   @@map("tenants")
 }
