@@ -1,24 +1,27 @@
 import { Controller, Post, Get, Body } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import argon2 from "argon2";
-import { AuthDto } from "./dto";
+import { AccessDto } from "./dto";
+import { AuthService } from "src/core/auth/auth.service";
 
-@Controller('auth')
-export class AuthController {
-    constructor(private readonly prisma: PrismaService) {
-    }
+@Controller('access')
+export class AccessController {
+    constructor(
+        private readonly prisma: PrismaService,
+        private authService: AuthService
+    ) {}
 
     @Post('signin')
-    async signin(@Body() dto: AuthDto) {
+    async signin(@Body() dto: AccessDto) {
         // const user = await this.prisma.user.findFirst();
 
         // TODO: validate dto username and pass
 
+        const token = await this.authService.signToken(dto.username);
+
         return {
-            msg: 'get user',
-            // user: user,
-            dto: dto
-        }
+            access_token: token
+        };
     }
 
     @Get('password-hash')
