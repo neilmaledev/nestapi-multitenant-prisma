@@ -11,6 +11,10 @@ export class TenantDto {
 
     @IsNotEmpty()
     @IsString()
+    dbName: string;
+
+    @IsNotEmpty()
+    @IsString()
     dbUsername: string;
 
     @IsNotEmpty()

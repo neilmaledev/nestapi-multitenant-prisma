@@ -11,10 +11,12 @@ export class AuthService {
         private config: ConfigService
     ) {}
 
-    async signToken(username: string): Promise<{access_token: string}> {
+    async signToken(tenantUid: string, username: string): Promise<{access_token: string}> {
         const payload = {
             username: username,
-            sampleFromReq: this.req['sampleFromReq']
+            tenant: {
+                tenantUid: tenantUid
+            }
         };
 
         const secret = this.config.get('JWT_SECRET');

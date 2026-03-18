@@ -18,6 +18,7 @@ export class JwtStrategy extends PassportStrategy(
 
     async validate(payload: any) {
         // this is the user's data/payload from req
+        
         return payload;
     }
 }

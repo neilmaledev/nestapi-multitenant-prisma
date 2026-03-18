@@ -4,8 +4,9 @@ import { UserService } from "./user.service";
 import { UserDto } from "./dto";
 import { JwtGuard } from "src/core/auth/guard";
 import { CurrentUser } from "src/core/auth/decorator";
+import { PrismaTenantGuard } from "src/prisma/tenant/guard";
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, PrismaTenantGuard)
 @Controller('users')
 export class UserController {
     constructor(private readonly prisma: PrismaService, private userService: UserService) {

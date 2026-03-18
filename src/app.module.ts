@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CoreModule } from './core/core.module';
 import { EndpointModule } from './endpoint/endpoint.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
     imports: [
@@ -11,7 +12,8 @@ import { PrismaModule } from './prisma/prisma.module';
         }),
         CoreModule,
         PrismaModule,
-        EndpointModule
+        EndpointModule,
+        SharedModule
     ]
 })
 export class AppModule { }

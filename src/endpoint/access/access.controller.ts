@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body } from "@nestjs/common";
+import { Controller, Post, Get, Body, UseGuards } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import argon2 from "argon2";
 import { AccessDto } from "./dto";
@@ -17,7 +17,7 @@ export class AccessController {
 
         // TODO: validate dto username and pass
 
-        const token = await this.authService.signToken(dto.username);
+        const token = await this.authService.signToken(dto.tenantUid, dto.username);
 
         return {
             access_token: token

@@ -1,11 +1,7 @@
 export class PrismaTenantDto {
-    databaseHost: string;
-
-    databaseUser: string;
-
-    databasePassword: string;
-
-    databaseName: string;
-
-    databasePort: number;
+    dbHost: string;
+    dbUsername: string;
+    dbPassword: string;
+    dbName: string;
+    dbPort: number;
 }

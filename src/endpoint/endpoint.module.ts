@@ -1,8 +1,7 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { AccessModule } from './access/access.module';
 import { DevopsModule } from './devops/devops.module';
-import { PrismaTenantMiddleware } from '../prisma/tenant/prisma-tenant.middleware';
 
 @Module({
     imports: [
@@ -11,12 +10,4 @@ import { PrismaTenantMiddleware } from '../prisma/tenant/prisma-tenant.middlewar
         UserModule
     ],
 })
-export class EndpointModule implements NestModule { 
-    configure(consumer: MiddlewareConsumer) {
-
-    consumer
-      .apply(PrismaTenantMiddleware)
-      .forRoutes('*')   // apply to all routes
-
-  }
-}
+export class EndpointModule {}

@@ -15,6 +15,7 @@ export class DevopsService {
             data: {
                 tenantUid: dto.tenantUid,
                 tenantName: dto.tenantName,
+                dbName: dto.dbName,
                 dbUsername: dto.dbUsername,
                 dbPassword: passwordHash,
                 createdBy: 'SYSTEM',

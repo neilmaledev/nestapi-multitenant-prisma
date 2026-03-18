@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from 'generated/tenant';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaTenantDto } from './dto';
 
@@ -8,11 +9,11 @@ export class PrismaTenantService extends PrismaClient implements OnModuleInit, O
   constructor(private params: PrismaTenantDto) {
 
     const adapter = new PrismaMariaDb({
-      host: params.databaseHost,
-      user: params.databaseUser,
-      password: params.databasePassword,
-      database: params.databaseName,
-      port: Number(params.databasePort),
+      host: params.dbHost,
+      user: params.dbUsername,
+      password: params.dbPassword,
+      database: params.dbName,
+      port: Number(params.dbPort),
       connectionLimit: 5,
     });
     super({ adapter });
