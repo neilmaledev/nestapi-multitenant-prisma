@@ -14,11 +14,11 @@ export class PrismaTenantManager {
 
         if (!tenantClient) {
             tenantClient = new PrismaTenantService({
-                dbHost: 'localhost',
-                dbUsername: 'hiracorp',
-                dbPassword: 'hiracorp777',
-                dbName: 'db_tenant_hiracorp',
-                dbPort: 3307
+                dbHost: dto.dbHost,
+                dbUsername: dto.dbUsername,
+                dbPassword: dto.dbPassword,
+                dbName: dto.dbName,
+                dbPort: Number(dto.dbPort)
             });
 
             await tenantClient.$connect();

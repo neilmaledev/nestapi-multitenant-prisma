@@ -5,6 +5,7 @@ import { UserDto } from "./dto";
 import { JwtGuard } from "src/core/auth/guard";
 import { CurrentUser } from "src/core/auth/decorator";
 import { PrismaTenantGuard } from "src/prisma/tenant/guard";
+import { PrismaTenant } from "src/prisma/tenant/decorator";
 
 @UseGuards(JwtGuard, PrismaTenantGuard)
 @Controller('users')
@@ -13,10 +14,13 @@ export class UserController {
     }
 
     @Get('me')
-    async me(@CurrentUser() user: any) {
+    async me(@CurrentUser() user: any, @PrismaTenant() prismaTenant: any) {
+        const {password, ...safeUser} = await prismaTenant.user.findFirst();
+
         return {
             me: 'neil',
-            user: user
+            user: user,
+            safeUser: safeUser
         }
     }
 

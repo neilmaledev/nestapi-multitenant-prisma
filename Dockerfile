@@ -6,9 +6,13 @@ COPY . .
 
 RUN npm install
 
+# Build and generate main prisma
 RUN node src/core/prisma/schema-builder.js
-
 RUN npx prisma generate --schema=src/core/prisma/schema.prisma
+
+# Build and generate tenant prisma
+RUN node src/core/prisma/tenant/tenant-schema-builder.js
+RUN npx prisma generate --schema=src/core/prisma/tenant/tenant-schema.prisma
 
 EXPOSE 3000
 
