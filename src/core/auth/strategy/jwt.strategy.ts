@@ -9,7 +9,7 @@ export class JwtStrategy extends PassportStrategy(
     'jwt' // 'jwt is the default for passport-jwt; it can be customize to be used in AuthGuard
 ) {
     constructor(config: ConfigService) {
-        const secret = config.get('JWT_SECRET');
+        const secret = config.get('TOKEN_SECRET');
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             secretOrKey: secret
@@ -18,7 +18,6 @@ export class JwtStrategy extends PassportStrategy(
 
     async validate(payload: any) {
         // this is the user's data/payload from req
-        
         return payload;
     }
 }

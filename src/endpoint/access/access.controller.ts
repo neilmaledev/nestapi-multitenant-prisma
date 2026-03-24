@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards } from "@nestjs/common";
+import { Controller, Post, Get, Body, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import argon2 from "argon2";
 import { AccessDto } from "./dto";
@@ -17,12 +17,13 @@ export class AccessController {
 
     @Post('signin')
     async signin(@Body() dto: AccessDto) {
+        // Convert this into service
         // Step 1 - Get tenant
         const tenant = await this.tenantService.getTenant(dto.tenantUid);
 
         if (!tenant) {
             console.error("AccessController.signin >> Tenant not found");
-            throw new Error('Credentials did not match');
+            throw new NotFoundException('Credentials did not match');
         }
 
         // Step 2 - Get a tenant db connection

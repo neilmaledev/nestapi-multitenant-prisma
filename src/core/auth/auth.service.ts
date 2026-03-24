@@ -6,12 +6,12 @@ import { JwtService } from "@nestjs/jwt";
 @Injectable({ scope: Scope.REQUEST })
 export class AuthService {
     constructor(
-        @Inject(REQUEST) private req: Request,
+        // @Inject(REQUEST) private req: Request, // commented for reference
         private jwt: JwtService,
         private config: ConfigService
     ) {}
 
-    async signToken(tenantUid: string, username: string): Promise<{access_token: string}> {
+    async signToken(tenantUid: string, username: string): Promise<string> {
         const payload = {
             username: username,
             tenant: {
@@ -19,16 +19,15 @@ export class AuthService {
             }
         };
 
-        const secret = this.config.get('JWT_SECRET');
+        const tokenSecret = this.config.get('TOKEN_SECRET');
+        const tokenExpiry = this.config.get('TOKEN_EXPIRY');
 
         const token = await this.jwt.signAsync(payload, {
-            expiresIn: '15m',
-            secret: secret
+            expiresIn: tokenExpiry,
+            secret: tokenSecret
         });
 
-        return {
-            access_token: token
-        };
+        return token;
     }
     
 }
